@@ -1,0 +1,23 @@
+<mat-card>
+  <mat-card-title>Current tasks</mat-card-title>
+  <mat-card-content>
+    <mat-list>
+      <mat-list-item *ngFor="let task of tasks">
+        <mat-card mat-line>
+          <mat-card-title>
+            <mat-icon [routerLink]="['/current-task-edit', task.id]">edit</mat-icon>
+            {{task.description}}
+          </mat-card-title>
+          <mat-card-content>
+            <mat-chip-list mat-line>
+              <mat-chip color="primary" selected>{{task.category}}</mat-chip>
+              <mat-card-subtitle>{{task.timestamp}}</mat-card-subtitle>
+            </mat-chip-list>
+          </mat-card-content>
+          <mat-divider></mat-divider>
+        </mat-card>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+  <button mat-raised-button color="accent" [routerLink]="['/current-task-add']">New task</button>
+</mat-card>
