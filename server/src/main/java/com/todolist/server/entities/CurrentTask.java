@@ -12,7 +12,7 @@ import java.time.LocalDate;
 public class CurrentTask implements Task{
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter
     private Long id;
 
@@ -38,9 +38,10 @@ public class CurrentTask implements Task{
     @JoinColumn(name = "category_id")
     private Category category;
 
-    public CurrentTask(String description, Category category) {
+    public CurrentTask(String description, Category category, User user) {
         this.description = description;
         this.timestamp = LocalDate.now();
         this.category = category;
+        this.userId = user;
     }
 }

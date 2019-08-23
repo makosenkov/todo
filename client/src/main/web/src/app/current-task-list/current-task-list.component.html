@@ -2,7 +2,7 @@
   <mat-card-title>Current tasks</mat-card-title>
   <mat-card-content>
     <mat-list>
-      <mat-list-item *ngFor="let task of tasks">
+      <mat-list-item *ngFor="let task of tasks | async">
         <mat-card mat-line>
           <mat-card-title>
             <mat-icon [routerLink]="['/current-task-edit', task.id]">edit</mat-icon>

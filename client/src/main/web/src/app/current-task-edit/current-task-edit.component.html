@@ -1,24 +1,30 @@
 <mat-card>
-  <form #currentTaskForm="ngForm" (ngSubmit)="save(currentTaskForm.value)">
+  <form #currentTaskForm="ngForm" (ngSubmit)="onSubmit()">
     <mat-card-header>
-      <mat-card-title><h2>{{currentTask.name ? 'Edit' : 'Add'}} Task</h2></mat-card-title>
+      <mat-card-title><h2>{{currentTask.description ? 'Edit' : 'Add'}} Task</h2></mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <input type="hidden" name="href" [(ngModel)]="currentTask.href">
+      <input type="hidden" name="id" [(ngModel)]="currentTask.id">
       <mat-form-field>
         <input matInput placeholder="task description" [(ngModel)]="currentTask.description"
                required name="description">
       </mat-form-field>
+      <mat-chip-list>
+        <mat-chip *ngFor="let chip of availableChips" selected [color]="chip.color"
+                  (click)="currentTask.category=chip.name">
+          {{chip.name}}
+        </mat-chip>
+      </mat-chip-list>
     </mat-card-content>
     <mat-card-actions>
       <button mat-raised-button color="primary" type="submit"
               [disabled]="!currentTaskForm.form.valid">Save</button>
-      <button mat-raised-button color="secondary" (click)="remove(currentTask.href)"
-              *ngIf="currentTask.href" type="button">Delete</button>
+      <button mat-raised-button color="secondary" (click)="(delete())"
+              *ngIf="currentTask.id" type="button">Delete</button>
       <a mat-button routerLink="/current-task-list">Cancel</a>
     </mat-card-actions>
     <mat-card-footer>
-
+      do your best!
     </mat-card-footer>
   </form>
 </mat-card>

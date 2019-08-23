@@ -12,25 +12,23 @@ export class CurrentTaskService {
   constructor(private http: HttpClient) {
   }
 
-  getAll(): Observable<any> {
-    return this.http.get(this.CURRENT_TASK_API);
+  getCurrentTask(id: number): Observable<Object> {
+    return this.http.get(`${this.CURRENT_TASK_API}/${id}`);
   }
 
-  get(id: string) {
-    return this.http.get(this.CURRENT_TASK_API + '/' + id);
+  createCurrentTask(currentTask: Object): Observable<Object> {
+    return this.http.post(`${this.CURRENT_TASK_API}`, currentTask);
   }
 
-  save(currentTask: any): Observable<any> {
-    let result: Observable<Object>;
-    if (currentTask['href']) {
-      result = this.http.put(currentTask.href, currentTask);
-    } else {
-      result = this.http.post(this.CURRENT_TASK_API, currentTask);
-    }
-    return result;
+  updateCurrentTask(id: number, value: any): Observable<Object> {
+    return this.http.put(`${this.CURRENT_TASK_API}/${id}`, value);
   }
 
-  remove(href: string) {
-    return this.http.delete(href);
+  deleteCurrentTask(id: number): Observable<any> {
+    return this.http.delete(`${this.CURRENT_TASK_API}/${id}`, { responseType: 'text' });
+  }
+
+  getCurrentTasksList(): Observable<any> {
+    return this.http.get(`${this.CURRENT_TASK_API}`);
   }
 }
