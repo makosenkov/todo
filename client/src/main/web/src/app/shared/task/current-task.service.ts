@@ -24,7 +24,7 @@ export class CurrentTaskService {
     return this.http.put(`${this.CURRENT_TASK_API}/${id}`, value);
   }
 
-  deleteCurrentTask(id: number): Observable<any> {
+  deleteCurrentTask(id: number) {
     return this.http.delete(`${this.CURRENT_TASK_API}/${id}`, { responseType: 'text' });
   }
 

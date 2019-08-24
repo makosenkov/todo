@@ -38,9 +38,9 @@ public class CurrentTask implements Task{
     @JoinColumn(name = "category_id")
     private Category category;
 
-    public CurrentTask(String description, Category category, User user) {
+    public CurrentTask(String description, Category category, User user, LocalDate timestamp) {
         this.description = description;
-        this.timestamp = LocalDate.now();
+        this.timestamp = timestamp;
         this.category = category;
         this.userId = user;
     }

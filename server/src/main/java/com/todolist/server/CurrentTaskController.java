@@ -52,6 +52,7 @@ class CurrentTaskController {
         CurrentTaskDTO taskDTO = getCurrentTaskDTO(taskId);
         taskDTO.setDescription(taskDetails.getDescription());
         taskDTO.setCategory(taskDetails.getCategory());
+        taskDTO.setTimestamp(taskDetails.getTimestamp());
         final CurrentTask updatedTask = currentTaskService.save(currentTaskMapper.toCurrentTask(taskDTO));
         return ResponseEntity.ok(currentTaskMapper.toCurrentTaskDTO(updatedTask));
     }

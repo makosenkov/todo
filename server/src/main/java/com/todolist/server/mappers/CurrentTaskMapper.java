@@ -9,6 +9,8 @@ import com.todolist.server.repos.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +24,7 @@ public class CurrentTaskMapper {
 
     public CurrentTaskDTO toCurrentTaskDTO(CurrentTask currentTask) {
         return new CurrentTaskDTO(
+            currentTask.getId(),
             currentTask.getDescription(),
             currentTask.getCategory().getName(),
             currentTask.getTimestamp().toString());
@@ -36,9 +39,11 @@ public class CurrentTaskMapper {
     public CurrentTask toCurrentTask(CurrentTaskDTO currentTaskDTO) {
         Category category = categoryRepository.getCategoryByName(currentTaskDTO.getCategory().toLowerCase());
         User user = userRepository.getUserByLogin("admin");
+        LocalDate date = LocalDate.parse(currentTaskDTO.getTimestamp());
         return new CurrentTask(
             currentTaskDTO.getDescription(),
             category,
-            user);
+            user,
+            date);
     }
 }

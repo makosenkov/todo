@@ -6,7 +6,7 @@
     <mat-card-content>
       <input type="hidden" name="id" [(ngModel)]="currentTask.id">
       <mat-form-field>
-        <input matInput placeholder="task description" [(ngModel)]="currentTask.description"
+        <input matInput placeholder="currentTask.description" [(ngModel)]="currentTask.description"
                required name="description">
       </mat-form-field>
       <mat-chip-list>
@@ -15,16 +15,20 @@
           {{chip.name}}
         </mat-chip>
       </mat-chip-list>
+      <mat-form-field>
+        <input matInput [matDatepicker]="picker" placeholder="Choose a date"
+        [(ngModel)]="currentTask.timestamp">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
     </mat-card-content>
     <mat-card-actions>
       <button mat-raised-button color="primary" type="submit"
               [disabled]="!currentTaskForm.form.valid">Save</button>
       <button mat-raised-button color="secondary" (click)="(delete())"
               *ngIf="currentTask.id" type="button">Delete</button>
-      <a mat-button routerLink="/current-task-list">Cancel</a>
+      <a mat-button routerLink="/main">Cancel</a>
     </mat-card-actions>
-    <mat-card-footer>
-      do your best!
-    </mat-card-footer>
   </form>
 </mat-card>

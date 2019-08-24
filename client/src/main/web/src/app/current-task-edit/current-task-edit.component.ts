@@ -38,7 +38,7 @@ export class CurrentTaskEditComponent implements OnInit {
           if (task) {
             this.currentTask = task;
           } else {
-            console.log(`Task with id '${id}' not found, returning to list`);
+            console.log(`Task with id '${id}' not found, returning to main page`);
             this.gotoList();
           }
         });
@@ -47,7 +47,7 @@ export class CurrentTaskEditComponent implements OnInit {
   }
 
   gotoList() {
-    this.router.navigate(['/current-task-list']);
+    this.router.navigate(['/main']);
   }
 
   newCurrentTask(): void {

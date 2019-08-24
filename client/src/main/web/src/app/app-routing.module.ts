@@ -1,14 +1,23 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {CurrentTaskListComponent} from "./current-task-list/current-task-list.component";
 import {CurrentTaskEditComponent} from "./current-task-edit/current-task-edit.component";
+import {MainComponent} from "./main/main.component";
+import {NoteEditComponent} from "./note-edit/note-edit.component";
 
 
 const routes: Routes = [
-  { path: '', redirectTo: '/current-task-list', pathMatch: 'full' },
+  { path: '', redirectTo: '/main', pathMatch: 'full' },
   {
-    path: 'current-task-list',
-    component: CurrentTaskListComponent
+    path: 'main',
+    component: MainComponent
+  },
+  {
+    path: 'note-add',
+    component: NoteEditComponent
+  },
+  {
+    path: 'note-edit/:id',
+    component: NoteEditComponent
   },
   {
     path: 'current-task-add',
